@@ -4,7 +4,7 @@ class Stack {
   constructor() {
     this.count = 0;
     this.storage = {};
-  };
+  }
 
   push(value) {
     for (var i = this.count - 1; i >= 0; i--) {
@@ -12,7 +12,7 @@ class Stack {
     }
     this.storage[0] = value;
     this.count++;
-  };
+  }
 
   pop() {
     if (this.count > 0) {
@@ -23,9 +23,9 @@ class Stack {
       this.count--;
       return result;
     }
-  };
+  }
 
   size() {
     return this.count;
-  };
+  }
 }
