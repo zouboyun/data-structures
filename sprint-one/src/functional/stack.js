@@ -8,17 +8,17 @@ var Stack = function() {
   // Implement the methods below
   someInstance.push = function(value) {
     for (var i = size - 1; i >= 0; i--) {
-      someInstance[i+1] = someInstance[i];
+      storage[i+1] = storage[i];
     }
-    someInstance[0] = value;
+    storage[0] = value;
     size++;
   };
 
   someInstance.pop = function() {
     if (size > 0) {
-      var result = someInstance[0];
+      var result = storage[0];
       for (var i = 0; i < size; i++) {
-        someInstance[i] = someInstance[i+1];
+        storage[i] = storage[i+1];
       }
       size--;
       return result;
