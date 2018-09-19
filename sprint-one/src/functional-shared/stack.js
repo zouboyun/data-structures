@@ -21,7 +21,7 @@ stackMethods.pop = function() {
   if (this.count > 0) {
     var result = this[0];
     for (var i = 0; i < this.count; i++) {
-      this[i] = this[i+1];
+      this[i] = this[i + 1];
     }
     this.count--;
     return result;
@@ -30,6 +30,6 @@ stackMethods.pop = function() {
 
 stackMethods.size = function() {
   return this.count;
-}
+};
 
 
