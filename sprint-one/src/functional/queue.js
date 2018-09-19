@@ -8,15 +8,15 @@ var Queue = function() {
 
   someInstance.enqueue = function(value) {
     for (var i = size - 1; i >= 0; i--) {
-      someInstance[i+1] = someInstance[i];
+      storage[i+1] = storage[i];
     }
-    someInstance[0] = value;
+    storage[0] = value;
     size++;
   };
 
   someInstance.dequeue = function() {
     if (size > 0) {
-      var result = someInstance[size-1];
+      var result = storage[size-1];
       size--;
       return result;
     }
