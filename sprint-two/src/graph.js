@@ -57,10 +57,20 @@ Graph.prototype.removeEdge = function(fromNode, toNode) {
 
 // Pass in a callback which will be executed on each node of the graph.
 Graph.prototype.forEachNode = function(cb) {
+  for (var key in this.nodes) {
+    cb(key);
+  }
 };
 
 /*
  * Complexity: What is the time complexity of the above functions?
+  .addNode() is of constant complexity
+  .contains() is of linear complexity
+  .removeNode() is of linear complexity
+  .addEdge() is of constant complexity
+  .hasEdge() is of linear complexity
+  .removeEdge() is of linear complexity
+  .forEachNode() is of linear complexity
  */
 
 
