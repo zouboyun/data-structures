@@ -4,10 +4,6 @@ var LinkedList = function() {
   list.tail = null;
 
   list.addToTail = function(value) {
-    // get information of current tail if any
-    // var currTail = new Node(list.tail);
-    // update the tail property of list
-    // add a node to the list
     if (list.tail === null) {
       list.tail = new Node(value);    
     } else {
@@ -53,4 +49,7 @@ var Node = function(value) {
 
 /*
  * Complexity: What is the time complexity of the above functions?
+  .addToTail() is of constant complexity
+  .removeHead() is of constant complexity
+  .contains() is of linear complexity
  */
