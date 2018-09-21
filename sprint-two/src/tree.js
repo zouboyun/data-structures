@@ -15,16 +15,22 @@ treeMethods.addChild = function(value) {
 };
 
 treeMethods.contains = function(target) {
-  if (this.value === target) {
-    return true;
-  } else {
-    for (var i = 0; i < this.children.length; i++) {
-      if (this.children[i].contains(target)) {
-        return true;
-      }
+  if (typeof target !== 'object') {
+    if (this.value === target) {
+      return true;
     }
-    return false;
   }
+  if (Array.isArray(target) || target instanceof Object) {
+    if (compareObjects(target, this.value)) {
+      return true;
+    }
+  }
+  for (var i = 0; i < this.children.length; i++) {
+    if (this.children[i].contains(target)) {
+      return true;
+    }
+  }
+  return false;
 };
 
 

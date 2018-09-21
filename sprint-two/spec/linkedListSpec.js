@@ -65,7 +65,7 @@ describe('linkedList', function() {
     expect(linkedList.tail).to.equal(null);
   });
   
-  it('should accept and work with all primitive inputs', function() {
+  it('should accept and work with all primitive inputs for addToTail', function() {
     linkedList.addToTail('abc');
     expect(linkedList.tail.value).to.equal('abc');
     linkedList.addToTail(false);
@@ -74,7 +74,7 @@ describe('linkedList', function() {
     expect(linkedList.tail.value).to.equal(undefined);
   });
   
-  it('should accept and work with all collection inputs', function() {
+  it('should accept and work with all collection inputs for contains', function() {
     linkedList.addToTail(['a', 'b', 'c']);
     expect(linkedList.contains(['a', 'b', 'c'])).to.be.true;
   });

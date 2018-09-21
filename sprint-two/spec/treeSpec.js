@@ -41,4 +41,26 @@ describe('tree', function() {
     expect(tree.contains(8)).to.equal(true);
   });
 
+  it('should work with all primitive data types as input for addChild and contains', function() {
+    tree.addChild('a');
+    tree.addChild(true);
+    tree.children[0].addChild(undefined);
+    tree.children[1].addChild(8);
+    expect(tree.contains('a')).to.equal(true);
+    expect(tree.contains('b')).to.equal(false);
+    expect(tree.contains(true)).to.equal(true);
+    expect(tree.contains(undefined)).to.equal(true);
+    expect(tree.contains(8)).to.equal(true);
+  });
+  it('should work with all collection data types as input for addChild and contains', function() {
+    tree.addChild([5]);
+    tree.addChild({'a': 5});
+    tree.children[0].addChild(['a', 'b', 'c']);
+    expect(tree.contains([5])).to.equal(true);
+    expect(tree.contains([5, 6])).to.equal(false);
+    expect(tree.contains({'a': 5})).to.equal(true);
+    expect(tree.contains({'a': 5, 'b': 0})).to.equal(false);
+    expect(tree.contains(['a', 'b', 'c'])).to.equal(true);
+  });
+
 });
