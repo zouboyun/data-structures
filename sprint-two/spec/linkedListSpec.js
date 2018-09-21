@@ -52,4 +52,31 @@ describe('linkedList', function() {
   });
 
   // add more tests here to test the functionality of linkedList
+  it('should return null if removeHead is called on an empty list', function() {
+    linkedList.addToTail(1);
+    linkedList.removeHead();
+    expect(linkedList.removeHead()).to.equal(null);
+  });
+
+  it('should return head and tail references to null after last node is removed', function() {
+    linkedList.addToTail(1);
+    linkedList.removeHead();
+    expect(linkedList.head).to.equal(null);
+    expect(linkedList.tail).to.equal(null);
+  });
+  
+  it('should accept and work with all primitive inputs', function() {
+    linkedList.addToTail('abc');
+    expect(linkedList.tail.value).to.equal('abc');
+    linkedList.addToTail(false);
+    expect(linkedList.tail.value).to.equal(false);
+    linkedList.addToTail(undefined);
+    expect(linkedList.tail.value).to.equal(undefined);
+  });
+  
+  it('should accept and work with all collection inputs', function() {
+    linkedList.addToTail(['a', 'b', 'c']);
+    expect(linkedList.contains(['a', 'b', 'c'])).to.be.true;
+  });
+
 });
