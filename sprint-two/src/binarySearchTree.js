@@ -44,7 +44,6 @@ BinarySearchTree.methods.contains = function(target) {
 };
 
 BinarySearchTree.methods.depthFirstLog = function(func) {
-  // debugger;
   func(this.value);
   if (this.left !== null) {
     this.left.depthFirstLog(func);
@@ -56,4 +55,7 @@ BinarySearchTree.methods.depthFirstLog = function(func) {
 
 /*
  * Complexity: What is the time complexity of the above functions?
+  .insert() is O(logN)
+  .contains() is O(logN)
+  .depthFirstLog() is O(N)
  */
