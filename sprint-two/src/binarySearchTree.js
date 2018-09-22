@@ -37,7 +37,7 @@ BinarySearchTree.methods.maxDepth = function() {
   var levelNodes = [1,2,4,7,13,19];
   var levelEmpty = [0,0,0,0,1,3];
   this.breadthFirstLog(function() {
-    levelCounts[this.level] ++;
+    levelNodes[this.level] ++;
   });
   return levelNodes.length;
 }
