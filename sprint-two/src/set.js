@@ -1,6 +1,6 @@
 var Set = function() {
   var set = Object.create(setPrototype);
-  set._storage = {}; // fix me
+  set._storage = LimitedArray(set._limit);
   return set;
 };
 
@@ -8,11 +8,9 @@ var setPrototype = {};
 
 setPrototype.add = function(item) {
   if (this._storage[item] === undefined) {
-    // debugger;
     this._storage[item] = null;
-    // return Object.keys(this._storage);
+    return Object.keys(this._storage);
   }
-  
 };
 
 setPrototype.contains = function(item) {
