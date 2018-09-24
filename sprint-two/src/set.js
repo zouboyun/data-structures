@@ -7,17 +7,26 @@ var Set = function() {
 var setPrototype = {};
 
 setPrototype.add = function(item) {
+  if (typeof item !== 'string') {
+    item = JSON.stringify(item);
+  }
   if (this._storage[item] === undefined) {
-    this._storage[item] = null;
+    this._storage[item] = true;
     return Object.keys(this._storage);
   }
 };
 
 setPrototype.contains = function(item) {
+  if (typeof item !== 'string') {
+    item = JSON.stringify(item);
+  }
   return this._storage[item] !== undefined;
 };
 
 setPrototype.remove = function(item) {
+  if (typeof item !== 'string') {
+    item = JSON.stringify(item);
+  }
   delete this._storage[item];
 };
 
