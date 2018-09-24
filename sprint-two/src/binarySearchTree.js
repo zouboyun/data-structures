@@ -3,43 +3,28 @@ var BinarySearchTree = function(value) {
   bst.value = value;
   bst.left = null;
   bst.right = null;
-  bst.level = 1;
   return bst;
 };
 
 BinarySearchTree.methods = {};
 
 BinarySearchTree.methods.insert = function(value) {
-
   if (value < this.value) {
     if (this.left === null) {
       this.left = BinarySearchTree(value);
-      this.left.level = this.level++;
     } else {
       this.left.insert(value);
     }
   } else if (value > this.value) {
     if (this.right === null) {
       this.right = BinarySearchTree(value);
-      this.right.level = this.level++;
-      if (this.right.level > this.maxDepth) {
-        this.maxDepth = this.right.level;
-      }
     } else {
       this.right.insert(value);
     }
   }
-  
-  var max = this.maxDepth();
-};
-
-BinarySearchTree.methods.maxDepth = function() {
-  var levelNodes = [1, 2, 4, 7, 13, 19];
-  var levelEmpty = [0, 0, 0, 0, 1, 3];
-  this.breadthFirstLog(function() {
-    levelNodes[this.level] ++;
-  });
-  return levelNodes.length;
+  if (this.maxDepth()  > this.minDepth() * 2) {
+    this.rebalance();
+  }
 };
 
 BinarySearchTree.methods.contains = function(target) {
@@ -87,6 +72,52 @@ BinarySearchTree.methods.breadthFirstLog = function(func, arr) {
   if (childrenArr.length > 0) {
     this.breadthFirstLog(func, childrenArr);
   }
+};
+
+BinarySearchTree.methods.minDepth = function() {
+  if (this === null) {
+    return 0;
+  } else if (this.left === null && this.right === null) {
+    return 1;
+  } else if (this.left === null) {
+    return this.right.minDepth() + 1;
+  } else if (this.right === null) {
+    return this.left.minDepth() + 1;
+  }
+  return Math.min(this.left.minDepth() + 1, this.right.minDepth() + 1);
+};
+
+BinarySearchTree.methods.maxDepth = function() {
+  if (this === null) {
+    return 0;
+  } else if (this.left === null && this.right === null) {
+    return 1;
+  } else if (this.left === null) {
+    return this.right.maxDepth() + 1;
+  } else if (this.right === null) {
+    return this.left.maxDepth() + 1;
+  }
+  return Math.max(this.left.maxDepth() + 1, this.right.maxDepth() + 1);
+};
+
+BinarySearchTree.methods.rebalance = function() {
+  // push all the nodes into an arr
+  var allNodeValues = [];
+  this.breadthFirstLog(function(value) {
+    allNodeValues.push(value);
+  });
+  
+  // select a new root and re-insert everything based on the new root
+  var newRoot = allNodeValues[Math.floor(allNodeValues.length / 2)];
+  this.value = newRoot;
+  this.left = null;
+  this.right = null;
+  var self = this;
+  allNodeValues.forEach(nodeValue => {
+    if (nodeValue !== newRoot) {
+      self.insert(nodeValue);
+    }
+  })
 };
 
 /*
